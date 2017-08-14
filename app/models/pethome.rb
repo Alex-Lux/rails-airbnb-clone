@@ -1,0 +1,2 @@
+class Pethome < ApplicationRecord
+end
