@@ -1,0 +1,10 @@
+
+<%= simple_form_for(@pethome) do |f| %>
+  <%= f.input :address %>
+  <%= f.input :bedrooms %>
+  <%= f.input :guests %>
+  <%# f.input :photos, as: :attachinary %>
+  <%= f.input :observations %>
+  <%# f.input :photo_cache, as: :hidden %>
+  <%= f.submit %>
+<% end %>
