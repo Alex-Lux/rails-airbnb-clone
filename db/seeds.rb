@@ -5,58 +5,92 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# require 'faker'
+require 'faker'
 
-# puts 'Creating 10 fake pets...'
-# 10.times do
-#   pet = Pet.new(
-#     name:    Faker::Company.name,
-#     pethome_id: ,
-#     category: ["dog", "cat", "bird", "snake", "turtle"].sample
-#     breed: ["friendly breed", "sorta scary breed", "polite type"].sample
-#     weight:
-#     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-#     rating:  (0..5).to_a.sample
-#     rating:  (0..5).to_a.sample
-#   )
-#   restaurant.save!
-# end
+Booking.destroy_all
+Pet.destroy_all
+PethomeReview.destroy_all
+PetsitterReview.destroy_all
+Pethome.destroy_all
+User.destroy_all
 
-url = "https://www.pets4homes.co.uk/images/articles/2666/large/predicting-the-colour-of-labrador-retriever-puppies-54f44cee7979e.jpg"
-pet = Pet.create({name: "Fido", pethome_id: 1, category: "dog", breed: "labrador", weight: "20kg", size: "medium", color: "golden", picture: url})
+puts 'Creating 10 fake pets...'
+10.times do
+  user = User.new(
+    email:    Faker::Internet.email,
+    password: "123456",
+    picture: Faker::Avatar.image,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+  )
+  user.save!
+
+rand(0..1).times do
+  pethome = Pethome.new(
+    user_id: user.id,
+    address: Faker::Address.street_address,
+    bedrooms: rand(1..6),
+    guests: rand(1..6),
+    observations: Faker::Lorem.sentence,
+    picture: Faker::LoremPixel.image("500x600", false, 'city')
+    )
+    pethome.save!
 
 
-url = "https://i.ytimg.com/vi/PXlDWtCh3IU/maxresdefault.jpg"
-pet = Pet.create({name: "Bob", pethome_id: 2, category: "dog", breed: "bulldog", weight: "10kg", size: "small", color: "white", picture: url })
+  rand(1..6).times do
+    pet = Pet.new(
+      name:    "#{Faker::Name.prefix} #{Faker::DragonBall.character}",
+      pethome_id: pethome.id,
+      category: ["dog", "elderly dog", "horse", "elderly cat", "hamster", "puppy", "kitten", "cat", "bird", "snake", "fish", "turtle", "chinchilla", "rat", "rabbit"].sample,
+      breed: ["friendly breed", "sorta scary breed", "polite type"].sample,
+      weight: rand(5..100).to_s + "kg",
+      size: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+      color:  Faker::Color.color_name,
+      picture: Faker::LoremPixel.image("50x60", false, 'animals'),
+      observations: Faker::Lorem.sentence
+    )
+  pet.save!
+
+  end
+
+end
+
+end
+# url = "https://www.pets4homes.co.uk/images/articles/2666/large/predicting-the-colour-of-labrador-retriever-puppies-54f44cee7979e.jpg"
+# pet = Pet.create({name: "Fido", pethome_id: 1, category: "dog", breed: "labrador", weight: "20kg", size: "medium", color: "golden", picture: url, observations: "splendid dog- the very best of all."})
 
 
-url = "https://img.dog-learn.com/dog-breeds/smooth-fox-terrier/smooth-fox-terrier-i5.jpg"
-pet = Pet.create({name: "Becky", pethome_id: 3, category: "dog", breed: "fox terrier", weight: "8kg", size: "small", color: "tri color", picture: url })
+# url = "https://i.ytimg.com/vi/PXlDWtCh3IU/maxresdefault.jpg"
+# pet = Pet.create({name: "Bob", pethome_id: 2, category: "dog", breed: "bulldog", weight: "10kg", size: "small", color: "white", picture: url, observations: "well- she tries, but has some annoying tendancies."})
+
+
+# url = "https://img.dog-learn.com/dog-breeds/smooth-fox-terrier/smooth-fox-terrier-i5.jpg"
+# pet = Pet.create({name: "Becky", pethome_id: 3, category: "dog", breed: "fox terrier", weight: "8kg", size: "small", color: "tri color", picture: url, observations: "My dog is the best dog on this earth. Having said that, he sometimes eats poo." })
 
 # url = ""
 # pet = Pet.create({breed: "bulldog", weight: "10kg", size: "small", color: "white" })
 # pet.save!
 # pet.photo_url = url
 
-url = "https://ralfweiser.files.wordpress.com/2012/11/ralf-a4.jpg"
-user = User.create({email:"j@jjhhf.com", password: 123456, picture: url, first_name: "keeyn", last_name: "berryn"})
-#User.all
+# url = "https://ralfweiser.files.wordpress.com/2012/11/ralf-a4.jpg"
+# user = User.create({email:"j@jjhhf.com", password: 123456, picture: url, first_name: "keeyn", last_name: "berryn"})
+# #User.all
 
-url = "http://images.amcnetworks.com/amc.com/wp-content/uploads/2015/05/AMC_MM_S7B_TAS_714_PeggyStan.jpg"
-user = User.create({email:"jfjfjf@jjdjf.com", password: 123456, picture: url, first_name: "fernando", last_name: "bernando"})
+# url = "http://images.amcnetworks.com/amc.com/wp-content/uploads/2015/05/AMC_MM_S7B_TAS_714_PeggyStan.jpg"
+# user = User.create({email:"jfjfjf@jjdjf.com", password: 123456, picture: url, first_name: "fernando", last_name: "bernando"})
 
-url = "http://static1.businessinsider.com/image/55e622f19dd7cc1a008b779f/only-one-person-can-stop-china-from-buying-up-big-american-companies.jpg"
-user = User.create({email:"bee@bob.com", password: 132456, picture: url, first_name: "alexandra", last_name: "balexandra"})
+# url = "http://static1.businessinsider.com/image/55e622f19dd7cc1a008b779f/only-one-person-can-stop-china-from-buying-up-big-american-companies.jpg"
+# user = User.create({email:"bee@bob.com", password: 132456, picture: url, first_name: "alexandra", last_name: "balexandra"})
 
 
-url = "https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg"
-pethome = Pethome.create({user_id: 1, address:"1 rue du Rhin", bedrooms: 2, guests: 4, observations: "lovely house to stay in", picture: url})
+# url = "https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg"
+# pethome = Pethome.create({user_id: 1, address:"1 rue du Rhin", bedrooms: 2, guests: 4, observations: "lovely house to stay in", picture: url})
 
-url = "http://redhomesnc.com/wp-content/uploads/2016/03/Home-picture.jpg"
-pethome = Pethome.create({user_id: 2, address:"121 rue du Rhin", bedrooms: 1, guests: 2, observations: "lovely house to stay in", picture: url})
+# url = "http://redhomesnc.com/wp-content/uploads/2016/03/Home-picture.jpg"
+# pethome = Pethome.create({user_id: 2, address:"121 rue du Rhin", bedrooms: 1, guests: 2, observations: "lovely house to stay in", picture: url})
 
-url = "http://www.hilltexhomes.com/wp-content/uploads/2013/12/hilltexhomes.jpg"
-pethome = Pethome.create({user_id: 3, address:"4 rue du Rhin", bedrooms: 4, guests: 3, observations: "lovely house to stay in", picture: url})
+# url = "http://www.hilltexhomes.com/wp-content/uploads/2013/12/hilltexhomes.jpg"
+# pethome = Pethome.create({user_id: 3, address:"4 rue du Rhin", bedrooms: 4, guests: 3, observations: "lovely house to stay in", picture: url})
 
 
 
