@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :pethomes do
   resources :pets, only: [ :create ]
-
-  resources :pethomes
+  end
 
   devise_for :users
 

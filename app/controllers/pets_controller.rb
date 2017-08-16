@@ -2,14 +2,15 @@ class PetsController < ApplicationController
 
   def create
     @pet = Pet.new(pet_params)
-    @pet.user = User.find(params[:user_id])
+    @pethome = Pethome.find(params[:pethome_id])
+    @pet.pethome = @pethome
     @pet.save
+    redirect_to @pethome
   end
-
 
 
 private
   def pet_params
-  params.require(:pet).permit(:content)
+  params.require(:pet).permit(:name, :breed, :color, :weight, :category, :observations, :size)
   end
 end

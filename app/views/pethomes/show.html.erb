@@ -1,3 +1,9 @@
 <h2><%= @pethome.address %></h2>
 <p><%= @pethome.bedrooms %></p>
 <p><%= image_tag @pethome.picture %></p>
+<h3>Pets</h3>
+<%= render "pets/form" %>
+
+<% @pethome.pets.each do |pet| %>
+<p><%= pet.name %></p>
+<% end %>

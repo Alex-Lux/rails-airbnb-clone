@@ -21,7 +21,7 @@ class PethomesController < ApplicationController
 
   def show  # GET /pethomes/:idS
     @pethome = Pethome.find(params[:id])
-
+    @pet = Pet.new
   end
 
   def edit # GET /pethomes/:id/edit
