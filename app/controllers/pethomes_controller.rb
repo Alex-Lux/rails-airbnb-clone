@@ -25,13 +25,22 @@ class PethomesController < ApplicationController
   end
 
   def edit # GET /pethomes/:id/edit
+    @pethome = Pethome.find(params[:id])
+  end
 
+  def update
+    @pethome = Pethome.find(params[:id])
+    if @pethome.update(pethome_params)
+      redirect_to pethomes_path
+    else
+      render :edit
+    end
   end
 
   private
 
   def pethome_params
-    params.require(:pethome).permit(:bookings, :pets, :pethome_reviews)
+    params.require(:pethome).permit(:bookings, :pets, :pethome_reviews, :address, :bedrooms, :guests, :observations)
   end
 
 end
