@@ -1,0 +1,9 @@
+<h1>Find the ideal pethome</h1>
+<p>Enjoy taking care of an animal while staying in a nice home</p>
+
+<% @pethomes.each do |pethome| %>
+  <a><%= pethome.picture %></a>
+  <p><%= pethome.address %></p>
+  <p><%= pethome.bedrooms %></p>
+  <p><%= pethome.guests %></p>
+<% end %>
