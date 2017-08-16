@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-   resources :pethomes
+
+  resources :pethomes do
+  resources :pets, only: [ :create ]
+  end
    root to: 'pethomes#index'
+
 
   devise_for :users
 

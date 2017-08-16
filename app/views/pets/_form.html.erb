@@ -1,0 +1,11 @@
+<%= simple_form_for [@pethome, @pet] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :category %>
+  <%= f.input :breed %>
+  <%= f.input :weight %>
+  <%= f.input :size %>
+  <%= f.input :color %>
+  <%= f.input :observations %>
+  <%# f.input :picture %>
+  <%= f.submit "add pet", class: "btn btn-primary" %>
+<% end %>
