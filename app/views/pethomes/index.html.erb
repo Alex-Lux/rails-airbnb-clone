@@ -5,7 +5,7 @@
   <div class="row">
     <% @pethomes.each do |pethome| %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(250,250,250,0.3),rgba(250,250,250,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+        <div class="card" style="background-image: linear-gradient(rgba(250,250,250,0.3),rgba(250,250,250,0.2)), url('<%= pethome.pets.first.photo.present? ? pethome.pets.first.photo_url : Pet.default_url  %>')">
           <div class="card-description">
             <h2><%= pethome.address %></h2>
           </div>
@@ -16,3 +16,7 @@
     <% end %>
   </div>
 </div>
+
+
+
+
