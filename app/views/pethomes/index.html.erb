@@ -4,7 +4,7 @@
 <div class="container">
 <!-- test search results -->
   <% if @pethomes.present? %>
-    <%= render @pethomes %>
+    <%= render 'search_form' %>
   <% else %>
     <p>There are no pethomes containing the term(s) <%= params[:search] %>.</p>
   <% end %>

@@ -2,7 +2,7 @@ class PethomesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @pethomes = Pethome.all
+    search
   end
 
   def new
@@ -18,8 +18,10 @@ class PethomesController < ApplicationController
 
   def search
     @pethomes = Pethome.all
-    if params[:search]
-      @pethomes = Pethome.search(params[:search]).order("created_at DESC")
+    params[:/] ||= {}
+    params[:/][:search] ||= ""
+    unless params[:/][:search].empty?
+      @pethomes = Pethome.search(params[:/][:search]).order("created_at DESC")
     else
       @pethomes = Pethome.all.order('created_at DESC')
     end
