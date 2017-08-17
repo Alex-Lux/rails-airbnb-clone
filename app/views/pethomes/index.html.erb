@@ -2,6 +2,13 @@
 <p> Find the perfect place to stay and lovely pets to take care of</p>
 
 <div class="container">
+<!-- test search results -->
+  <% if @pethomes.present? %>
+    <%= render @pethomes %>
+  <% else %>
+    <p>There are no pethomes containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+
   <div class="row">
     <% @pethomes.each do |pethome| %>
       <div class="col-xs-12 col-sm-4">

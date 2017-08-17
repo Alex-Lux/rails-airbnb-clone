@@ -17,7 +17,12 @@ class PethomesController < ApplicationController
   end
 
   def search
-   @pethomes = Pethome.all
+    @pethomes = Pethome.all
+    if params[:search]
+      @pethomes = Pethome.search(params[:search]).order("created_at DESC")
+    else
+      @pethomes = Pethome.all.order('created_at DESC')
+    end
   end
 
   def show  # GET /pethomes/:idS
