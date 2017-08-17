@@ -31,6 +31,9 @@ class PethomesController < ApplicationController
   end
 
   def edit # GET /pethomes/:id/edit
+    if @pethome.user != current_user
+      redirect_to route_path, notice: "You are not authorized to edit this page"
+    end
     @pethome = Pethome.find(params[:id])
   end
 
