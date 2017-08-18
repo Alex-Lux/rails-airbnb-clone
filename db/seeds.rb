@@ -14,8 +14,8 @@ PetsitterReview.destroy_all
 Pethome.destroy_all
 User.destroy_all
 
-puts 'Creating 10 fake pets...'
-10.times do
+puts 'Creating 30 fake pets...'
+30.times do
   user = User.new(
     email:    Faker::Internet.email,
     password: "123456",
@@ -25,7 +25,6 @@ puts 'Creating 10 fake pets...'
   )
   user.save!
 
-rand(0..1).times do
   pethome = Pethome.new(
     user_id: user.id,
     address: Faker::Address.street_address,
@@ -52,8 +51,6 @@ rand(0..1).times do
   pet.save!
 
   end
-
-end
 
 end
 # url = "https://www.pets4homes.co.uk/images/articles/2666/large/predicting-the-colour-of-labrador-retriever-puppies-54f44cee7979e.jpg"

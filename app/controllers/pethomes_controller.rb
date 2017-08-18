@@ -22,6 +22,7 @@ class PethomesController < ApplicationController
     if params[:search] && params[:search] != ''
       @pethomes = Pethome.search(params[:search]).order("created_at DESC")
     end
+
   end
 
   def show  # GET /pethomes/:idS
