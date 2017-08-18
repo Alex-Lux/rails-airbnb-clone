@@ -1,63 +1,102 @@
+<!-- <div class="image_dog" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://static.pexels.com/photos/257570/pexels-photo-257570.jpeg'); background:fill"> -->
 <p id="notice"><%= notice %></p>
-
-
+<center>
 <h2>Welcome <%= current_user.first_name %></h1>
 
 <%= link_to 'Edit', edit_user_registration_path %>
 <%= link_to 'Back', account_path %>
-<table>
+
+
+<h3>Pending booking requests</h3>
+<table class="booking_style">
+<thead>
+  <th>Reference</th>
+  <th>Pethome</th>
+  <th>From</th>
+  <th>To</th>
+  <th>Status</th>
+</thead>
+
+<tbody>
   <% @pending_my_bookings.each do |booking| %>
     <tr>
-      <td>You are waiting for confirmation for</td>
-      <td>Reference:<%= booking.id %></td>
-      <td>Pethome:<%= booking.pethome_id %></td>
-      <td>From:<%= booking.starting_date %></td>
-      <td>To:<%= booking.ending_date %></td>
-      <td>Status:<%= booking.status %></td>
+      <td><%= booking.id %></td>
+      <td><%= booking.pethome_id %></td>
+      <td><%= booking.starting_date %></td>
+      <td><%= booking.ending_date %></td>
+      <td><%= booking.status %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
 
-<table>
+
+<h3>Approved booking requests</h3>
+<table class="booking_style">
+<thead>
+  <th>Reference</th>
+  <th>Pethome</th>
+  <th>From</th>
+  <th>To</th>
+  <th>Status</th>
+</thead>
+
   <% @approved_my_bookings.each do |booking| %>
     <tr>
-      <td>You have been approved for</td>
-      <td>Reference:<%= booking.id %></td>
-      <td>Pethome:<%= booking.pethome_id %></td>
-      <td>From:<%= booking.starting_date %></td>
-      <td>To:<%= booking.ending_date %></td>
-      <td>Status:<%= booking.status %></td>
+      <td><%= booking.id %></td>
+      <td><%= booking.pethome_id %></td>
+      <td><%= booking.starting_date %></td>
+      <td><%= booking.ending_date %></td>
+      <td><%= booking.status %></td>
     </tr>
   <% end %>
 </table>
 
-<table>
+
+<h3>Pending pethome bookings</h3>
+<table class="booking_style">
+<thead>
+  <th>Reference</th>
+  <th>Pethome</th>
+  <th>From</th>
+  <th>To</th>
+  <th>Status</th>
+</thead>
+
   <% @pending_pethome_bookings.each do |booking| %>
     <tr>
-      <td>You have to confirm </td>
-      <td>Reference:<%= booking.id %></td>
-      <td>Pethome:<%= booking.pethome_id %></td>
-      <td>From:<%= booking.starting_date %></td>
-      <td>To:<%= booking.ending_date %></td>
-      <td>Status:<%= booking.status %></td>
-      <td><%= link_to  "approve booking", "bookings/#{booking.id}/approve", class: "btn btn-success", method: "patch" %></td>
+      <td><%= booking.id %></td>
+      <td><%= booking.pethome_id %></td>
+      <td><%= booking.starting_date %></td>
+      <td><%= booking.ending_date %></td>
+      <td><%= booking.status %></td>
+      <td><%= link_to  "approve", "bookings/#{booking.id}/approve", class: "btn btn-success", method: "patch" %></td>
     </tr>
   <% end %>
 </table>
 
-<table>
+
+<h3>Approved pethome bookings</h3>
+<table class="booking_style">
+<thead>
+  <th>Reference</th>
+  <th>Pethome</th>
+  <th>From</th>
+  <th>To</th>
+  <th>Status</th>
+</thead>
   <% @approved_pethome_bookings.each do |booking| %>
     <tr>
-      <td>You have confirmed</td>
-      <td>Reference:<%= booking.id %></td>
-      <td>Pethome:<%= booking.pethome_id %></td>
-      <td>From:<%= booking.starting_date %></td>
-      <td>To:<%= booking.ending_date %></td>
-      <td>Status:<%= booking.status %></td>
+      <td><%= booking.id %></td>
+      <td><%= booking.pethome_id %></td>
+      <td><%= booking.starting_date %></td>
+      <td><%= booking.ending_date %></td>
+      <td><%= booking.status %></td>
     </tr>
   <% end %>
 </table>
-
+</center>
+<!-- </div> -->
 <!-- create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
