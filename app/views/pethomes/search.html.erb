@@ -1,9 +1,14 @@
-<h1>Find the ideal pethome</h1>
-<p>Enjoy taking care of an animal while staying in a nice home</p>
 
-<% @pethomes.each do |pethome| %>
-  <a><%= pethome.picture %></a>
-  <p><%= pethome.address %></p>
-  <p><%= pethome.bedrooms %></p>
-  <p><%= pethome.guests %></p>
-<% end %>
+  <div class="row">
+    <% @pethomes.each do |pethome| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(250,250,250,0.3),rgba(250,250,250,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+          <div class="card-description">
+            <h2><%= pethome.address %></h2>
+          </div>
+          <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+          <%= link_to "", pethome, class: "card-link" %>
+        </div>
+      </div>
+    <% end %>
+  </div>

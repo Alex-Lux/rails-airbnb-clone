@@ -7,7 +7,7 @@ class Pethome < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   def self.search(search)
-    where("address LIKE ?", "%#{search}%")
+    where("address ILIKE ?", "%#{search}%")
   end
 
 end
