@@ -19,7 +19,7 @@ puts 'Creating 10 fake pets...'
   user = User.new(
     email:    Faker::Internet.email,
     password: "123456",
-    picture: Faker::Avatar.image,
+    remote_photo_url: Faker::Avatar.image,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name
   )
@@ -32,7 +32,7 @@ rand(0..1).times do
     bedrooms: rand(1..6),
     guests: rand(1..6),
     observations: Faker::Lorem.sentence,
-    picture: Faker::LoremPixel.image("500x600", false, 'city')
+    remote_photo_url: Faker::LoremPixel.image("500x600", false, 'city')
     )
     pethome.save!
 
@@ -46,7 +46,7 @@ rand(0..1).times do
       weight: rand(5..100).to_s + "kg",
       size: "#{Faker::Address.street_address}, #{Faker::Address.city}",
       color:  Faker::Color.color_name,
-      picture: Faker::LoremPixel.image("50x60", false, 'animals'),
+      remote_photo_url: Faker::LoremPixel.image("500x600", false, 'animals'),
       observations: Faker::Lorem.sentence
     )
   pet.save!

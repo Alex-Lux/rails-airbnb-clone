@@ -1,17 +1,62 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= current_user.email %></h1>
-<h1><%= current_user.first_name %></h1>
-<h1><%= current_user.last_name %></h1>
+
+<h2>Welcome <%= current_user.first_name %></h1>
 
 <%= link_to 'Edit', edit_user_registration_path %>
 <%= link_to 'Back', account_path %>
+<table>
+  <% @pending_my_bookings.each do |booking| %>
+    <tr>
+      <td>You are waiting for confirmation for</td>
+      <td>Reference:<%= booking.id %></td>
+      <td>Pethome:<%= booking.pethome_id %></td>
+      <td>From:<%= booking.starting_date %></td>
+      <td>To:<%= booking.ending_date %></td>
+      <td>Status:<%= booking.status %></td>
+    </tr>
+  <% end %>
+</table>
 
+<table>
+  <% @approved_my_bookings.each do |booking| %>
+    <tr>
+      <td>You have been approved for</td>
+      <td>Reference:<%= booking.id %></td>
+      <td>Pethome:<%= booking.pethome_id %></td>
+      <td>From:<%= booking.starting_date %></td>
+      <td>To:<%= booking.ending_date %></td>
+      <td>Status:<%= booking.status %></td>
+    </tr>
+  <% end %>
+</table>
 
+<table>
+  <% @pending_pethome_bookings.each do |booking| %>
+    <tr>
+      <td>You have to confirm </td>
+      <td>Reference:<%= booking.id %></td>
+      <td>Pethome:<%= booking.pethome_id %></td>
+      <td>From:<%= booking.starting_date %></td>
+      <td>To:<%= booking.ending_date %></td>
+      <td>Status:<%= booking.status %></td>
+      <td><%= link_to  "approve booking", "bookings/#{booking.id}/approve", class: "btn btn-success", method: "patch" %></td>
+    </tr>
+  <% end %>
+</table>
 
-
-
-
+<table>
+  <% @approved_pethome_bookings.each do |booking| %>
+    <tr>
+      <td>You have confirmed</td>
+      <td>Reference:<%= booking.id %></td>
+      <td>Pethome:<%= booking.pethome_id %></td>
+      <td>From:<%= booking.starting_date %></td>
+      <td>To:<%= booking.ending_date %></td>
+      <td>Status:<%= booking.status %></td>
+    </tr>
+  <% end %>
+</table>
 
 <!-- create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

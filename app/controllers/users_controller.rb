@@ -5,6 +5,25 @@ class UsersController < ApplicationController
 
   end
 
+  def show
+    @pending_pethome_bookings = []
+    current_user.pethomes.each do |pethome|
+      @pending_pethome_bookings << pethome.bookings.where(status: "pending")
+    end
+    @pending_pethome_bookings.flatten!
+
+    @approved_pethome_bookings = []
+    current_user.pethomes.each do |pethome|
+      @approved_pethome_bookings << pethome.bookings.where(status: "approved")
+    end
+    @approved_pethome_bookings.flatten!
+
+
+
+    @pending_my_bookings = current_user.bookings.where(status: "pending")
+    @approved_my_bookings = current_user.bookings.where(status: "approved")
+  end
+
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -25,5 +44,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.fetch(:user, {})
+      params.require(:user).permit(:first_name, :last_name, :email, :photo, :photo_cache)
     end
 end

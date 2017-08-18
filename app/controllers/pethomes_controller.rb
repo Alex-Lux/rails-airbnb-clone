@@ -18,12 +18,9 @@ class PethomesController < ApplicationController
 
   def search
     @pethomes = Pethome.all
-    params[:/] ||= {}
-    params[:/][:search] ||= ""
-    unless params[:/][:search].empty?
-      @pethomes = Pethome.search(params[:/][:search]).order("created_at DESC")
-    else
-      @pethomes = Pethome.all.order('created_at DESC')
+
+    if params[:search] && params[:search] != ''
+      @pethomes = Pethome.search(params[:search]).order("created_at DESC")
     end
   end
 
@@ -51,7 +48,7 @@ class PethomesController < ApplicationController
   private
 
   def pethome_params
-    params.require(:pethome).permit(:bookings, :pets, :pethome_reviews, :address, :bedrooms, :guests, :observations)
+    params.require(:pethome).permit(:bookings, :pets, :pethome_reviews, :address, :bedrooms, :guests, :observations, :photo, :photo_cache)
   end
 
 end
