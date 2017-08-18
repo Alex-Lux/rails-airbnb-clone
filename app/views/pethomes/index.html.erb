@@ -1,24 +1,28 @@
-<h1>Welcome to PetBnB</h1>
-<p> Find the perfect place to stay and lovely pets to take care of</p>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://static.pexels.com/photos/62379/pexels-photo-62379.jpeg');">
 
-<div class="container">
-<!-- test search results -->
-  <% if @pethomes.present? %>
-    <%= render 'search_form' %>
-  <% else %>
-    <p>There are no pethomes containing the term(s) <%= params[:search] %>.</p>
-  <% end %>
+  <div class="banner-content">
 
-  <div class="row">
-    <% @pethomes.each do |pethome| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(250,250,250,0.3),rgba(250,250,250,0.2)), url('<%= pethome.pets.any? ? pethome.pets.first.photo_url : Pet.default_url  %>')">
-          <div class="card-description">
-            <h2><%= pethome.address %></h2>
+
+    <h1>Welcome to PetBnB</h1>
+    <p> Find the perfect place to stay and lovely pets to take care of</p>
+
+    <!-- test search results -->
+    <% if @pethomes.present? %>
+      <%= render 'search_form' %>
+    <% else %>
+      <p>There are no pethomes containing the term(s) <%= params[:search] %>.</p>
+      <div class="row">
+        <% @pethomes.each do |pethome| %>
+          <div class="col-xs-12 col-sm-4">
+            <div class="card" style="background-image: linear-gradient(rgba(250,250,250,0.3),rgba(250,250,250,0.2)), url('<%= pethome.pets.any? ? pethome.pets.first.photo_url : Pet.default_url  %>')">
+              <div class="card-description">
+                <h2><%= pethome.address %></h2>
+              </div>
+              <img class="card-user" src="<%= pethome.user.photo_url %>">
+              <%= link_to "", pethome, class: "card-link" %>
+            </div>
           </div>
-          <img class="card-user" src="<%= pethome.user.photo_url %>">
-          <%= link_to "", pethome, class: "card-link" %>
-        </div>
+        <% end %>
       </div>
     <% end %>
   </div>
