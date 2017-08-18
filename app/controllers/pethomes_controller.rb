@@ -2,7 +2,7 @@ class PethomesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    search
+    @pethomes = Pethome.all
   end
 
   def new
