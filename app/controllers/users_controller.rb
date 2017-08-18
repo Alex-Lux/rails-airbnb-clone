@@ -44,5 +44,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.fetch(:user, {})
+      params.require(:user).permit(:first_name, :last_name, :email, :photo, :photo_cache)
     end
 end

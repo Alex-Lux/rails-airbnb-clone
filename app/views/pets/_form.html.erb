@@ -6,6 +6,8 @@
   <%= f.input :size %>
   <%= f.input :color %>
   <%= f.input :observations %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
   <%# f.input :picture %>
   <%= f.submit "add pet", class: "btn btn-primary" %>
 <% end %>

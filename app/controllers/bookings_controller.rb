@@ -7,7 +7,7 @@ class BookingsController < ApplicationController
     @booking.pethome = @pethome
     @booking.user = current_user
     @booking.save
-    redirect_to root_path, notice: "Thanks for your booking. Details are saved on your profile"
+    redirect_to account_path, notice: "Thanks for your booking. Details are saved on your profile"
   end
 
   def update

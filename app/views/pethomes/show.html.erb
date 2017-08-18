@@ -1,12 +1,33 @@
-<h2><%= @pethome.address %></h2>
-<p><%= @pethome.bedrooms %></p>
-<p><%#= image_tag @pethome.picture %></p>
+<div class="row text-center">
+  <div class="col-xs-12 col-md-3">
+    <h2><%= @pethome.address %></h2>
+    <%# image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=200x200&sensor=false&maptype=roadmap&markers=color:red|#avenida da liberdade, lisbon" %>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <p>Number of Bedrooms: <%= @pethome.bedrooms %>
+    </p>
+    <p>Maximum Guests: <%= @pethome.guests %>
+    </p>
+    <p>Description: <%= @pethome.observations %>
+    </p>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <p><%= cl_image_tag @pethome.photo, width: 300 %></p>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <p><%= cl_image_tag @pethome.user.photo, width: 100 %></p>
+    <p><%= @pethome.user.first_name + " " + @pethome.user.last_name %>
+    </p>
+  </div>
+</div>
 <h3>Pets</h3>
+
 <% if @pethome.user == current_user %>
 <%= render "pets/form" %>
 <% end %>
 <% @pethome.pets.each do |pet| %>
-<p><%= pet.name %></p>
+  <p><%= cl_image_tag pet.photo, width: 50 %></p>
+  <p><%= pet.name %></p>
 <% end %>
 
 <%= render "bookings/form" %>
