@@ -51,7 +51,7 @@ class PethomesController < ApplicationController
   private
 
   def pethome_params
-    params.require(:pethome).permit(:bookings, :pets, :pethome_reviews, :address, :bedrooms, :guests, :observations)
+    params.require(:pethome).permit(:bookings, :pets, :pethome_reviews, :address, :bedrooms, :guests, :observations, :photo, :photo_cache)
   end
 
 end
